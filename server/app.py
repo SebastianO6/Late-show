@@ -5,6 +5,11 @@ from flask_jwt_extended import JWTManager
 from server.config import Config 
 
 
+from dotenv import load_dotenv
+load_dotenv()
+
+
+
 app = Flask(__name__)
 app.config.from_object(Config)
 
@@ -15,10 +20,8 @@ jwt = JWTManager(app)
 
 with app.app_context():
     
-    from server.models.user import User
-    from server.models.guest import Guest
-    from server.models.episode import Episode
-    from server.models.appearance import Appearance
+    from server.models import User, Guest, Episode, Appearance
+
 
     
     from server.controllers.guest_controller import guest_bp
